@@ -1,0 +1,14 @@
+{
+  "name": "brain-init",
+  "private": true,
+  "description": "brain-init skill. `yarn eval <fixture>` runs it against a fictional fixture from internal-eval/ (gitignored, local only).",
+  "scripts": {
+    "eval": "internal-eval/run-eval.sh",
+    "eval:list": "internal-eval/run-eval.sh list",
+    "eval:window": "internal-eval/run-eval.sh -w",
+    "eval:tmp": "internal-eval/run-eval.sh -t",
+    "eval:slash": "internal-eval/run-eval.sh -s",
+    "eval:dry": "internal-eval/run-eval.sh -n -t",
+    "eval:clean": "rm -rf internal-eval/runs"
+  }
+}
