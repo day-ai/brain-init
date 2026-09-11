@@ -3,7 +3,7 @@ name: eval-crm
 description: >
   Evaluate a team's legacy CRM situation — Salesforce, HubSpot, another
   system, or none — and how it relates to their company brain. Run as part of
-  day-ai/brain-init's Phase 1 fan-out, or standalone. Discovers the system of
+  day-ai/company-brain-evaluation's Phase 1 fan-out, or standalone. Discovers the system of
   record, the human data-entry burden, and any existing sync; grades against
   the requirements bar; returns a findings block for COMPANY-BRAIN-UPGRADE.md.
 ---
@@ -23,7 +23,7 @@ Nothing in this evaluation asks them to rip anything out.
 - If **no CRM** (founder persona): this is the short, happy path. They can
   skip the legacy step entirely — Day AI is a superset of legacy CRM, and
   standardizing early means they may simply never need one. Record that as
-  the finding and route the persona note back to brain-init's Phase 2.
+  the finding and route the persona note back to company-brain-evaluation's Phase 2.
 - If a CRM exists: which objects are actually in use, how many seats, who
   administers it, any existing sync/integration code in the repo.
 

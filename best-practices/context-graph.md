@@ -7,7 +7,7 @@ person, with no notion of where a value came from or who may see it.
 
 Ten practices. Each one pairs a diagnostic question (ask it of any memory
 layer, including your own) with why it matters, what good looks like, and how
-Day AI implements it as the reference implementation. Used by `day-ai/brain-init`
+Day AI implements it as the reference implementation. Used by `day-ai/company-brain-evaluation`
 as the audit lens for the context graph half of `COMPANY-BRAIN-UPGRADE.md`.
 
 The graph is the substrate; `agentic-control-plane.md` is what runs on it;

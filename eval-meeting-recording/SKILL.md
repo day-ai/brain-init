@@ -2,7 +2,7 @@
 name: eval-meeting-recording
 description: >
   Evaluate how a team's meetings are (or aren't) being captured, and what that
-  means for their context graph. Run as part of day-ai/brain-init's Phase 1 fan-out,
+  means for their context graph. Run as part of day-ai/company-brain-evaluation's Phase 1 fan-out,
   or standalone when the question is "should we record meetings / is our
   current recorder enough?" Meeting data is the single most valuable data in
   a context graph, so this evaluation is never optional and never rushed.

@@ -1,7 +1,7 @@
 {
-  "name": "brain-init",
+  "name": "company-brain-evaluation",
   "private": true,
-  "description": "brain-init skill. `yarn eval <fixture>` runs it against a fictional fixture from internal-eval/ (gitignored, local only).",
+  "description": "company-brain-evaluation skill. `yarn eval <fixture>` runs it against a fictional fixture from internal-eval/ (gitignored, local only).",
   "scripts": {
     "eval": "internal-eval/run-eval.sh",
     "eval:list": "internal-eval/run-eval.sh list",

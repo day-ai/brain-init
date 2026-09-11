@@ -9,11 +9,12 @@ and fleet reviews that have been tested against real teams, and from what
 those teams told us when the output missed.
 
 Ten practices. Each pairs a diagnostic question with why it matters, what good
-looks like, and what we have seen. Used by `day-ai/brain-init` in Phase 1 to
+looks like, and what we have seen. Used by `day-ai/company-brain-evaluation` in Phase 1 to
 grade the skills a folder already contains, and in Phase 3 as the standard
 the agent and skill portion of `COMPANY-BRAIN-UPGRADE.md` is written to.
-The detailed build work belongs to `gtm-brain`
-(https://github.com/day-ai/gtm-brain); this is what it builds toward.
+The detailed build work belongs to Phase 5 (`implement-upgrade/`), which uses
+Day AI's reference implementation (https://github.com/day-ai/gtm-brain) as an
+internal example; this is what it builds toward.
 
 ---
 
@@ -296,7 +297,7 @@ practices 4–6).
 
 ## Grading the skills a folder already has
 
-For Phase 1 of `brain-init`, three grades, scored on prompt quality *and* on
+For Phase 1 of `company-brain-evaluation`, three grades, scored on prompt quality *and* on
 actual run output where any exists:
 
 | Grade | Looks like |

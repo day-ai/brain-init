@@ -15,7 +15,7 @@ reading them. Same product, same fit. The difference is everything below.
 
 Ten practices. Each pairs a diagnostic question (ask it of any company brain,
 including your own) with why it matters, what good looks like, and what we
-have seen. Used by `day-ai/brain-init` as the third audit lens for
+have seen. Used by `day-ai/company-brain-evaluation` as the third audit lens for
 `COMPANY-BRAIN-UPGRADE.md` — the one that decides whether the first two
 lenses ever matter.
 
@@ -328,7 +328,7 @@ Read all three usage surfaces (practice 7) before acting on any of them:
 
 ---
 
-## Where each practice lands in `brain-init`
+## Where each practice lands in `company-brain-evaluation`
 
 - **Phase 1 (take stock):** practices 1–3 are readable from the folder and
   from `git shortlog` — the fit traits, who has written skills for whom, who
@@ -343,6 +343,6 @@ Read all three usage surfaces (practice 7) before acting on any of them:
   the CRM bridge. Section 4 (the bar) should read Adoption as this
   document reads it: the whole team's use, measured as conversations started,
   attached to a standing ritual.
-- **Phase 4 and `gtm-brain`:** the first implementation initiative is the
+- **Phase 5 (`implement-upgrade/`):** the first implementation initiative is the
   ignition event — the leader's Monday number on top of whatever data lands
   first. Everything else follows it.

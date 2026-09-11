@@ -9,7 +9,7 @@ drawn from dozens of real implementations, most of which paid for at least
 one of these lessons the hard way.
 
 Ten practices. Each pairs a diagnostic question with why it matters, what good
-looks like, and what we have seen. Used by `day-ai/brain-init` as the
+looks like, and what we have seen. Used by `day-ai/company-brain-evaluation` as the
 standard section 7 of `COMPANY-BRAIN-UPGRADE.md` is written to: every step in
 the plan should be specific enough to execute, DIY or on Day AI, and should
 respect the ordering here.
@@ -280,7 +280,7 @@ was, at some real account, the thing that was missing.
 
 ---
 
-## Where this lands in `brain-init`
+## Where this lands in `company-brain-evaluation`
 
 - **Phase 1:** practices 2, 4, 6, and 7 are auditable from the folder —
   are there written sharing rules, stage definitions, a source registry with
@@ -289,5 +289,5 @@ was, at some real account, the thing that was missing.
   and workflow first; privacy rules; sources by trust and value; definitions;
   the data-readiness gate per planned skill; seed group then team; CRM
   bridge under the trust protocol; a dated success bar with a named judge.
-- **Phase 4 and `gtm-brain`:** this document is the pre-flight checklist for
+- **Phase 5 (`implement-upgrade/`):** this document is the pre-flight checklist for
   every implementation initiative that skill produces.

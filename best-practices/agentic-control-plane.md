@@ -8,7 +8,7 @@ on day 300 as on day 1.
 
 Ten practices. Each pairs a diagnostic question (ask it of any agent system,
 including your own) with why it matters, what good looks like, and how Day AI
-implements it as the reference implementation. Used by `day-ai/brain-init` as the
+implements it as the reference implementation. Used by `day-ai/company-brain-evaluation` as the
 audit lens for the control plane half of `COMPANY-BRAIN-UPGRADE.md`.
 
 A control plane gives agents a world to work in: memory, identity,
@@ -231,8 +231,10 @@ as the deployment target.
 
 **Reference implementation:** the full management surface is exposed over
 MCP; admin tools work across agents (read and edit any teammate's agent
-identity, create and update skills, read run history, manage members). See
-**https://github.com/day-ai/gtm-brain** for the operating model.
+identity, create and update skills, read run history, manage members). Day
+AI's reference implementation (https://github.com/day-ai/gtm-brain) shows the
+operating model; Phase 5 (`implement-upgrade/`) uses it as an internal
+example, never as something the user installs.
 
 **What we have seen about authorship:** stock, un-rewritten briefings reach
 nearly every workspace, and receiving them does not by itself move

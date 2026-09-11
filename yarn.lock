@@ -5,8 +5,8 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"brain-init@workspace:.":
+"company-brain-evaluation@workspace:.":
   version: 0.0.0-use.local
-  resolution: "brain-init@workspace:."
+  resolution: "company-brain-evaluation@workspace:."
   languageName: unknown
   linkType: soft

@@ -3,7 +3,7 @@ name: eval-slack
 description: >
   Evaluate how a team's Slack — especially Slack Connect channels with
   prospects and customers — does (or doesn't) reach their company brain. Run
-  as part of day-ai/brain-init's Phase 1 fan-out, or standalone. Discovers usage
+  as part of day-ai/company-brain-evaluation's Phase 1 fan-out, or standalone. Discovers usage
   and capture, grades against the requirements bar, and returns a findings
   block for COMPANY-BRAIN-UPGRADE.md.
 ---

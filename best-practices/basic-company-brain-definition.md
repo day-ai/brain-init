@@ -7,7 +7,7 @@ documents in this folder build on — `context-graph.md` (the memory layer at
 its ceiling), `agentic-control-plane.md` (what runs on it), `adoption.md`
 (whether the team changes how it works), `implementation.md` (the order to
 build in), `agents-and-skills.md` (how to shape the fleet and write the
-skills). `day-ai/brain-init` uses it in Phase 1 as the reference shape to
+skills). `day-ai/company-brain-evaluation` uses it in Phase 1 as the reference shape to
 survey a folder against.
 
 ---
@@ -301,7 +301,7 @@ less safe.**
 
 ---
 
-## Where this lands in `brain-init`
+## Where this lands in `company-brain-evaluation`
 
 - **Phase 1:** survey the folder against the seven layers. Which exist? Is
   there a constitution, a current-state manifest, a decision log, a source
