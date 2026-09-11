@@ -17,12 +17,13 @@ Salesforce. The play is the bridge, not the migration.
 
 ## How the Day AI integration works
 
-The pattern (shared with HubSpot, Linear, and Outlook 365):
+The pattern (shared with HubSpot and BigQuery; Linear needs no app
+registration, and Outlook 365 takes a Tenant ID and Application ID instead):
 
 1. Register an **MCP OAuth app** in their own Salesforce organization — the
    customer owns the app.
 2. Put the client ID and secret into Day AI **at the workspace level**, as a
-   workspace admin.
+   workspace Owner (the built-in Admin role cannot).
 3. Each individual user then **auths themselves**, enabling agentic use via
    MCP — every agent acts in Salesforce **under that user's own permissions**.
    No god-mode service account, no bot credential scoped by application code.
@@ -30,10 +31,13 @@ The pattern (shared with HubSpot, Linear, and Outlook 365):
 ## The payoff to lead with
 
 Once bound, deploying **"data entry" agents with skills** is trivially easy:
-meetings, emails, and commitments flow into the right Salesforce records
-automatically, and the recurring "update CRM" calendar blocks go to zero.
-For most teams this alone is obviously worth the price of entry — it is the
-first win to sequence in the plan, and the one everyone in the org feels.
+agents draft the Salesforce updates from meetings, emails, and commitments,
+the rep approves each one in chat, and a field the team wants fully automated
+can be by authorizing the skill for the connector; the recurring "update CRM"
+calendar blocks go to zero. Day AI does not sync Salesforce into the graph or
+hear its events; reads and writes go through the connector live. For most
+teams this alone is obviously worth the price of entry — it is the first win
+to sequence in the plan, and the one everyone in the org feels.
 
 ## Findings to return
 

@@ -192,12 +192,13 @@ moment something happened.
 
 **What good looks like:** the standard starter architecture — a morning
 briefing (today's calls, prep, follow-ups due) and an end-of-day or weekly
-review (call review, drafted follow-ups, coaching notes) — with the second
-one built in week one, not month three. At least two scheduled or triggered
-skills per seat producing specific, data-grounded output. Event triggers on
-recording ready, email landed, stage moved. Skills that chain: one skill
-reads another's instructions or a shared page, so updating the source once
-updates everything downstream.
+review (call review, drafted follow-ups, coaching notes) — with the second one
+built in week one, not month three. At least two scheduled or triggered skills
+per seat producing specific, data-grounded output. Event triggers on recording
+ready, email landed, stage moved in the brain's own pipeline; there is no
+calendar trigger, so pre-call prep runs on a morning schedule. Skills that
+chain: one skill reads another's instructions or a shared page, so updating
+the source once updates everything downstream.
 
 **What we have seen:** "the agents post and I react" is how the healthiest
 users describe their day. A workspace with scheduled deliveries and zero
@@ -289,9 +290,9 @@ to the rest of the cohort during activation — versioning, sharing, and bulk
 push are a kickoff topic, not a month-three retrofit.
 
 **Reference implementation:** replies continue the thread with full context;
-instructions durably change behavior from the next run; the feedback layer is
-itself a readable dataset; the drift gets harvested (`agentic-control-plane.md`,
-practices 4–6).
+instructions durably change behavior from the next run; every prompt change is
+a readable version; harvesting forks is the admin's own pass
+(`agentic-control-plane.md`, practices 4–6).
 
 ---
 

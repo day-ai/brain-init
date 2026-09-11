@@ -51,10 +51,11 @@ how they use email at all (the right answer is: they didn't).
 ## 4. Ideal outcome (the thumb on the scale)
 
 Every mailbox in scope flowing continuously into the graph at full fidelity,
-threaded to the right people, organizations, and opportunities; ingestion
-governed by explicit inclusion/exclusion rules (address, domain, label);
-every query permission-enforced per person; email events available as skill
-triggers; zero behavior change asked of the team.
+threaded to the right people, organizations, and opportunities; sharing
+governed by explicit inclusion/exclusion rules per mailbox (address and
+domain); every query permission-enforced per person; email events available as
+skill triggers on each owner's own mail; zero behavior change asked of the
+team.
 
 ## 5. Return the standard findings block
 
@@ -62,5 +63,6 @@ Per `requirements-bar.md`. In the **DIY path**, state the facts from
 `email.md` plainly — sensitive scopes, undocumented hard limits, the
 disable-a-user's-Gmail-API-access failure mode, and the governance build no
 internal RevOps builder could or should take on. In **With Day AI**: built,
-tested, rock-solid off the shelf; Outlook via the native MCP pattern. In
-**Sequence**: email typically lands immediately after meetings.
+tested, rock-solid off the shelf for Google Workspace, with the four practical
+rules from `email.md` stated; Outlook is live tools only, not ingestion, so
+say so. In **Sequence**: email typically lands immediately after meetings.

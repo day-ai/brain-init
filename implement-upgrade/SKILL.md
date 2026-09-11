@@ -47,10 +47,14 @@ point that illustrates concepts; it is not a thing to install.
    resolves the workspace, the user, and the agent the token belongs to;
    nothing is passed by hand.
 3. **Role.** Call `manage_workspace_members` with `list_configuration`. Read
-   `currentUser.roleName`. Owner or Admin can do everything below. A Member
-   can build the repo side and their own agent, but inviting people, editing
-   teammates' agents, and creating skills for others will be blocked; say so
-   plainly and do not design around it.
+   `currentUser.roleName`. An Owner can do everything below. An Admin can
+   invite people, edit teammates' agents and skills, and write the workspace
+   instruction, but cannot configure workspace Integrations (Slack, Gong,
+   Granola) or connector credentials (HubSpot, Salesforce), and cannot buy
+   agents; those steps need an Owner. A Member can build the repo side and
+   their own agent, but inviting people, editing teammates' agents, and
+   creating skills for others will be blocked; say so plainly and do not
+   design around it.
 
 Report the workspace name, member count by role, and claimed domains in two
 lines, then move on.
@@ -150,12 +154,20 @@ hold for every write:
 Every workspace write is **previewed and approved first.** Every repo write
 was consented in Step 3. Specifically:
 
-1. **Privacy rules (7.2)** become a file in their repo and, where Day AI has a
-   control for it, configured exclusions, **before any connector is
-   authorized.** If the plan says a named person must sign off, wait for it.
+1. **Privacy rules (7.2)** become a file in their repo and a per-person
+   checklist, **before any connector is authorized.** Email sharing rules
+   belong to each mailbox and only its owner can set them, in their own Email
+   Sharing settings as they connect; there is no workspace-level exclusion an
+   admin can set for others, and the agent can only open that screen with an
+   exclusion prefilled for its own owner. Exclusions hide mail from teammates;
+   they do not stop it being ingested, and the contacts and companies it names
+   are still created. If the plan says a named person must sign off, wait for
+   it.
 2. **Sources (7.3)** connect in the plan's order. Each person connects their
-   own accounts. Never a service account, never one person's credentials for
-   the team.
+   own Google account and CRM seat. Never a service account, never one
+   person's credentials for the team. Slack, Gong, and Granola are the
+   exceptions by design: a workspace Owner connects each once for everyone,
+   and Gong and Granola imports are visible to the whole workspace.
 3. **Definitions (7.4)** become the workspace instruction. `list_configuration`
    first, merge into the existing text, respect the 3000-character cap, show
    the full before-and-after, and write only on approval. Anything that does
@@ -163,12 +175,20 @@ was consented in Step 3. Specifically:
 4. **The fleet (7.5)**, one agent at a time: identity from the spec, skills
    written to the authoring bar, tier and slot budget checked against the
    target agent, and the cost stated per the pricing rules with live figures
-   before anything is created. Each skill names its siblings and its
-   boundary, as the plan does.
+   before anything is created. Agents themselves are bought by an Owner in
+   Workspace Settings → Agents; the MCP can only open billing, so configure
+   identity and skills once the seat exists. Each skill names its siblings and
+   its boundary, as the plan does.
 5. **The data-readiness gate (7.6)** is binding. A skill whose gate fails in
    the plan is not deployed; it is logged as waiting with the reason.
 6. **The CRM trust protocol (7.7)** governs every CRM write: each rep's own
    auth, the scoped fields only, old → new reported, never a silent overwrite.
+   In Day AI that means the skill lives on the rep's own agent so writes use
+   their connection; the skill prompt produces the old → new line, because Day
+   AI keeps no ledger of writes to external systems; and approval is the
+   per-call prompt the rep answers in chat or Slack. Connector permissions are
+   per tool, not per field, and a skill authorized for the connector writes
+   without asking, so treat that as the automated tier.
 7. **Seed group, then team (7.8).** Invites go to the seed group first. The
    rest of the team waits for the gate the plan names.
 8. **Ignition and success bar (7.9, 7.10)** become one initiative file whose

@@ -273,9 +273,11 @@ transparent and matter-of-fact about exactly where free ends and paid begins —
 all pricing is public at [day.ai/pricing](https://day.ai/pricing), including
 transparent discount tables, so there are no surprises:
 
-- **The core of Day AI is free.** No cost for a user joining the workspace,
-  no cost to add data, no cost to query it, no cost to use the chat in the
-  webapp (which is insanely good). Teammates come in free.
+- **The core of Day AI is free.** No cost for a user joining the workspace, no
+  cost to add data, no cost to query it, no cost to use the chat in the webapp
+  (which is insanely good). Teammates come in free, within the allowance each
+  paid agent carries: a Professional agent covers up to 10 teammates and an
+  Executive agent up to 100, per [day.ai/pricing](https://day.ai/pricing).
 - **Creating a workspace** ([day.ai/login](https://day.ai/login)) requires a
   credit card and the purchase of at least one **Professional Agent** —
   $75/month, month-to-month, cancel anytime. This is a security and anti-spam
@@ -321,12 +323,12 @@ Shape (rows are illustrative; theirs come from their repo):
 | --- | --- |
 | This folder, git history, Claude Code | Still the authoring environment. Skills and instructions deploy from here over MCP instead of running only on your laptop. |
 | Monday pipeline review | Marcus opens a briefing an agent produced before 10:00, off live deals and last week's transcript, instead of Casey's Friday export and notes. |
-| HubSpot | Stays the system of record. Deals, contacts, and activity ingest continuously; agents update Next Step and Notes under each rep's own login. No more CSV. |
-| Gong | Stays. Every call reaches the brain at transcript fidelity; the "paste the Gong summary" step disappears from four skills. |
+| HubSpot | Stays the system of record. Agents read deals and contacts live under each rep's own HubSpot login and propose Next Step and Notes updates the rep approves in chat; nothing is copied into Day AI. No more CSV. |
+| Gong | Stays. Every call imports at transcript fidelity, visible to the whole workspace; the "paste the Gong summary" step disappears from four skills. |
 | Gmail | Every customer thread in the graph, permissioned per person before anyone can read it. The redlines and the buyer who never joins calls are finally visible. |
-| Slack, `#deal-desk` | Discount decisions become part of the deal record the day they happen. Briefings and answers arrive in Slack, where the team already is. |
-| `skills/call-prep`, `deal-review`, `follow-up-email` | Same logic and taste, now fired by a calendar event or a recording-ready event with the transcript behind them, delivered to the rep as a DM. |
-| `CLAUDE.md` rules and stage definitions | Become workspace instructions every agent inherits, enforced everywhere at once. |
+| Slack, `#deal-desk` | Once Day AI is added to the channel, discount decisions land in the graph against the account within the hour. Briefings and answers arrive in Slack, where the team already is. |
+| `skills/call-prep`, `deal-review`, `follow-up-email` | Same logic and taste, now run on a morning schedule or fired by a recording-ready event with the transcript behind them, delivered to each rep by their own agent. |
+| `CLAUDE.md` rules and stage definitions | The rules that apply everywhere become the one workspace instruction every agent reads; stage definitions and playbooks become shared Pages the skills read at run time. |
 
 **3. The call to action.** Two numbered steps, imperative mood, no menu of
 alternatives (the DIY path is already in the document; this is not the place
