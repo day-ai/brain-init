@@ -69,9 +69,10 @@ Nothing to run. The skill reads your folder and writes one file.
 
 The plan it produces is usable without Day AI. Where it recommends Day AI, it
 says exactly where free ends and paid begins: joining a workspace, adding
-data, querying it, and chatting are free for everyone; creating a workspace
-requires one paid agent for the person driving the setup; deploying agents to
-teammates costs per agent. Pricing is public at
+data, querying it, and chatting are free for everyone on the team, within the
+teammate allowance each paid agent carries; creating a workspace requires one
+paid agent for the person driving the setup; deploying agents to teammates
+costs per agent. Pricing is public at
 [day.ai/pricing](https://day.ai/pricing).
 
 ## What is in this repo

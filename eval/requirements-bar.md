@@ -10,13 +10,17 @@ bar even when they dispute the path.)
 
 ## 1. Safety
 
-- Permissions enforced **in the store**, per person: every query returns
-  exactly what that person is allowed to see, on every source, forever.
-- Ingestion governance: explicit controls for what enters the graph and what
-  never does — **inclusion AND exclusion** filtering.
-- Credentials per-user, never a god-mode service account.
+- Permissions enforced **in the store**, per person, on the sensitive sources:
+  every query returns exactly what that person is allowed to see of email,
+  calendar, meetings, and notes, forever. CRM records (people, companies,
+  deals, pipelines) are shared with the whole workspace by design.
+- Sharing governance: explicit **inclusion AND exclusion** rules that decide,
+  per mailbox, what the workspace can see and what stays private to its owner.
+- Credentials per user for mailboxes, calendars, and CRM seats, never a
+  god-mode service account; workspace-level only where the source itself is
+  workspace-level (Slack, Gong, Granola).
 - Provenance and lineage: know where every value came from, and be able to
-  purge a source and everything derived from it.
+  remove a source from the workspace.
 - The test: **would their security team sign off on it? Would they want them
   to look?**
 
@@ -33,7 +37,8 @@ bar even when they dispute the path.)
 ## 3. Capability
 
 - **Event-driven**: things can fire when data arrives (a recording is ready,
-  an email lands, a stage changes) — not just cron.
+  an email lands, a stage changes in the brain's own pipeline) — not just
+  cron.
 - **Derivation**: Opportunities, Actions, Customer Requests created and
   updated automatically from primary sources — the system writes, humans
   don't re-type.

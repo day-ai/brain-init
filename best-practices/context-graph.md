@@ -36,13 +36,18 @@ everything except a sensitive thread, another shares almost nothing but still
 expects the one deal-relevant thread to surface. Ingestion governed by
 explicit inclusion AND exclusion controls (address, domain, label).
 
-**Reference implementation:** thread-level authorization is computed as its
-own stage in the ingestion pipeline, before a message becomes an object
-anyone can read; sharing rules are configurable in the UI or by talking to
-your agent, with per-thread lockdown available. Note for DIY builds: Gmail
-API access at team scale requires a security audit closer to a clearance than
-a checkbox, with hard limits on the path there — this is the wall most
-homegrown graphs stop at.
+**Reference implementation:** authorization is computed per message as its own
+stage in the ingestion pipeline, before anyone but the mailbox owner can read
+it, and escalated to the thread. Sharing rules belong to each mailbox and are
+set by its owner in the UI (the agent can open them with an exclusion ready to
+add); changing a rule re-evaluates the mailbox's existing mail. Three facts to
+state up front: exclusions hide mail from teammates, they do not un-ingest it,
+and the contacts and companies it names are still created; one person's
+private rule makes a message private for everyone on it; and sharing is
+workspace or owner-only, never a named group. Note for DIY builds: Gmail API
+access at team scale requires a security audit closer to a clearance than a
+checkbox, with hard limits on the path there — this is the wall most homegrown
+graphs stop at.
 
 ## 2. Permissions are structural — in the key, not in a filter
 
@@ -55,15 +60,19 @@ deploy to reps, brief the CEO, or let CS see the account — and that day was
 always coming.
 
 **What good looks like:** who-can-see-a-value is decided when the value is
-written, not by a WHERE clause somebody remembers to add. Every agent thread
-carries an authorization scope; each person's agents see exactly what that
-person may see, across the whole graph, and nothing else. Hundreds of people
-share one graph and each experiences it as their own.
+written and stored beside it, so every read applies the same cheap filter
+instead of re-deriving policy. Every agent run carries the authorization scope
+of the person it works for; each person's agents see exactly what that person
+may see, and nothing else. Hundreds of people share one graph and each
+experiences it as their own.
 
 **Reference implementation:** the object system is a versioned property graph
-keyed by (among other things) user scope and property source — access control
-travels with the value. Outward, the same principle: where agents act in
-Salesforce or HubSpot they do it under each user's own OAuth, never a
+in which every object carries its own authorization grants, written at ingest
+and applied on every read. Email, calendar, meetings, notes, pages, and chats
+carry per-person grants; people, companies, deals, pipelines, and stages are
+shared with the whole workspace by design, so there is no
+rep-sees-only-their-deals scope. Outward, the same principle: where agents act
+in Salesforce or HubSpot they do it under each user's own OAuth, never a
 god-mode service account.
 
 ## 3. Ingestion is continuous; freshness is near-real-time
@@ -82,9 +91,13 @@ something happens.
 ends; email lands as it arrives; a stage change is an event a skill can fire
 on, not a diff a batch job discovers.
 
-**Reference implementation:** ingestion is native and continuous — recorder,
-email, calendar, Slack — with historical backfill (including from existing
-recorders) treated as a first-class path rather than a migration project.
+**Reference implementation:** ingestion is native and continuous: email and
+calendar arrive by push within seconds, recordings when processing finishes,
+Slack every half hour from the moment Day AI is added to a channel. Gong and
+Granola backfill their full history on connect; other recorders (Fathom,
+Chorus, Fireflies, Avoma) are imported by Day AI on request. Email backfill on
+connect covers recent history (about two years of threads per known contact
+plus the last two weeks in bulk), not the whole mailbox.
 
 ## 4. Provenance on every value
 
@@ -99,10 +112,11 @@ act on a briefing before a call.
 
 **What good looks like:** every property carries its source; every derived
 value points at the specific versions it was derived from; citations resolve
-to the moment in the call or the message in the thread; an admin can read any
-property's history. Cross-source contradiction becomes detectable — the call
-notes say the security review is done, the CISO's Tuesday email still has an
-open SSO question, and the system can say so, citing both.
+to the moment in the call or the message in the thread; anyone with an agent
+can ask for any property's history. Cross-source contradiction becomes
+detectable — the call notes say the security review is done, the CISO's
+Tuesday email still has an open SSO question, and the system can say so,
+citing both.
 
 **Reference implementation:** provenance and lineage are tracked on every
 property version. An embedding doesn't remember which sentence it came from;
@@ -120,13 +134,15 @@ that content don't know where they came from. This is the question compliance
 asks, and it is unbuildable retroactively — the information needed to do it
 is thrown away at ingestion time.
 
-**What good looks like:** deletes are lifecycle transitions that propagate
-along derivation edges. Remove a source and what was built from it comes out
-with it.
+**What good looks like:** every derived value records the versions it came
+from, so removing a source is a traceable act rather than a guess: you can see
+what it touched, and remove the source object and its own history from the
+workspace.
 
-**Reference implementation:** purge is a first-class operation because
-lineage is (practice 4). The design looks over-engineered on a whiteboard and
-turns out to be the bare minimum a human will expect.
+**Reference implementation:** lineage is recorded on every derived value
+(practice 4), and removing a recording or thread removes it, its history, and
+its clips and comments from the workspace. Values derived from it are not
+removed automatically; the lineage shows an admin where to look.
 
 ## 6. Retrieval is built for agents, not for search
 
@@ -162,10 +178,10 @@ the compression. If the input device is a person at a keyboard, resolution is
 capped regardless of features — and a DIY graph that has a model fill the
 same predefined fields keeps the cap.
 
-**What good looks like:** capture everything first; structure it at any
-point, retroactively, across all historical data. Add a property today and
-the system goes back through every conversation you've ever had and populates
-it, with provenance.
+**What good looks like:** capture everything first; structure it at any point,
+retroactively, across all historical data. Add a property today and the system
+populates it across your accounts and open deals from the last year of shared
+conversations, with provenance.
 
 **Reference implementation:** agents write the graph at a level of detail no
 human-entry schema anticipated — which is what they want available when they
@@ -206,9 +222,9 @@ thread is the person who filed the ticket, linked to the same organization
 and opportunity — so a question spanning three systems is one traversal.
 
 **Reference implementation:** people, organizations, opportunities, meetings,
-threads, Slack, tickets, product events, pages, and custom objects resolve
-into one graph; new sources arrive through native integrations, Zapier, and
-the API, and land connected.
+threads, Slack, pages, actions, and custom properties resolve into one graph;
+new sources arrive through native integrations, Zapier (people and
+organizations), and MCP, and land connected.
 
 ## 10. It has to pass security review
 
@@ -221,8 +237,8 @@ accounts they're trying to keep. A memory layer that can't be shown to
 security isn't a company brain; it's a liability with good answers.
 
 **What good looks like:** permissions a security team will actually sign off
-on; integrations where the customer owns the OAuth app and no vendor sits
-between them and their systems of record; the whole thing auditable
+on; integrations where, for the systems of record, the customer owns the OAuth
+app and no vendor sits between them and their data; the whole thing auditable
 (practices 2, 4, 5). State certifications only as they actually exist — the
 architecture is the claim, not a badge.
 
@@ -236,7 +252,7 @@ project" enterprise-hardened without hiring an engineer or losing authorship.
 
 For teams building their own applications on top: the graph is exposed over
 MCP, authenticated over OAuth, resolving the workspace, the user, and the
-agent from the token; the MIT-licensed SDK
+agent from the token; the open-source SDK
 (**https://github.com/day-ai/day-ai-sdk**) is a TypeScript client over the
 same tools. A builder's repo keeps working — skills, patterns, taste — with
 the memory layer swapped out from under it.

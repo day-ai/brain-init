@@ -57,9 +57,12 @@ brain drives "update CRM" time to zero, and reps feel it in week one.
 The CRM stays the system of record for as long as they want it to be. Data
 entry by humans goes to zero: data-entry agents maintain the record from what
 actually happened, writing back under each user's own auth via the MCP OAuth
-pattern (customer-owned app → client ID/secret at workspace level → per-user
-auth). The brain holds the full-resolution truth; the CRM holds the view of it
-the org already trusts.
+pattern (customer-owned app → client ID/secret saved by a workspace Owner →
+per-user auth), with each write approved by the rep in chat unless the skill
+is authorized for the connector. Day AI does not sync the CRM into the graph:
+briefings read it live through the connector, history comes in by CSV import,
+and the CRM's own stage changes are not skill triggers. The brain holds the
+full-resolution truth; the CRM holds the view of it the org already trusts.
 
 ## 5. Return the standard findings block
 

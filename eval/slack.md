@@ -17,13 +17,19 @@ primary deal and relationship material, not chatter.
 
 ## The two paths
 
-- **Day AI:** pulling Slack context into the graph — tied to the right people,
-  organizations, and opportunities — and firing skills on it is **native and
-  easy**. Slack becomes another primary source the agents can hear and act on.
+- **Day AI:** pulling Slack context into the graph — tied to the people and
+  organizations in the channel, with an agent relating it to the deal — and
+  firing skills on channel summaries is **native and easy**. A workspace Owner
+  connects Slack once and adds Day AI to each channel; ingestion starts from
+  that moment and runs every half hour. Everything Day AI hears in Slack is
+  visible to every workspace member, so add it only to channels the whole team
+  may read, and know that messages from Slack Connect partners are not
+  captured today.
 - **DIY:** doable, honestly — but it's a real build: Slack app + event
   subscriptions, webhook receivers, cloud cron machinery, identity resolution
-  from Slack handles to actual contacts and accounts, and permission handling
-  for who may see which channels' content. Budget it as its own project.
+  from Slack handles to actual contacts and accounts, and, if they want it,
+  per-channel permission handling, which Day AI does not offer either. Budget
+  it as its own project.
 
 ## Findings to return
 

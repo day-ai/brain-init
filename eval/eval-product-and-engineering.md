@@ -13,11 +13,11 @@ object**: attached to the right project, linked to its source, deduplicated
 against what's already been filed.
 
 This is one of the most quietly spectacular things a context graph + control
-plane combination does, and it's not aspirational: **Day AI uses it this way
-internally.** Feature requests surface from sales calls the day they're
-spoken. Bug reports in a customer Slack channel become triaged Linear
-requests with the conversation attached. The PM's job shifts from collecting
-feedback to weighing it.
+plane combination does. Feature requests surface from sales calls the day
+they're spoken. Bug reports in an internal Slack channel Day AI has been added
+to become triaged Linear requests with the conversation attached (messages
+from Slack Connect partners are not captured today). The PM's job shifts from
+collecting feedback to weighing it.
 
 It only works because both halves exist: the **context graph** hears every
 channel (meetings, email, Slack — see those eval docs), and the **control

@@ -32,7 +32,10 @@ The Day AI recorder is free, records fully (transcript, not just notes),
 resolves attendees into the graph, enforces permissions, and fires events —
 and nobody has to give up their personal notes habit to get it. Common
 pattern: the native recorder becomes the standard capture layer for the team;
-Granola remains whatever the individual wants it to be.
+Granola remains whatever the individual wants it to be. If the team wants its
+existing Granola notes in the graph, a workspace Owner can connect Granola
+with an Enterprise API key; history backfills, new notes sync every 20
+minutes, and imports are visible to the whole workspace.
 
 ## Findings to return
 

@@ -33,8 +33,15 @@ Both/and, not rip-and-replace. Keep Gong as long as it's earning its seat —
 the questions above tell you whether it is. The Day AI recorder is free and
 native to the graph, so the common pattern is: Day AI recorder covers internal
 meetings immediately (Gong never did), and external-call coverage either flows
-in from Gong via pipeline or migrates to the native recorder over time,
-whichever the delta table supports.
+in through Day AI's native Gong integration or migrates to the native recorder
+over time, whichever the delta table supports.
+
+How the Gong integration works: a workspace Owner connects Gong once by OAuth,
+the full call history backfills, and new calls arrive within about 15 minutes.
+Every imported call is visible to the whole workspace; per-person meeting
+sharing rules apply to the native recorder, not to Gong imports, and only
+Gong's own private flag keeps a call out. Say this where the team keeps some
+Gong calls off-limits.
 
 ## Findings to return
 

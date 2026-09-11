@@ -32,20 +32,22 @@ store.
 
 ## 3. Grade against the bar
 
-**Safety:** channel-level visibility must survive into the store — a private
-deal room can't leak through a query. **Performance:** a customer message in a
-shared channel should be in the graph in near-real-time, attached to the
-right account. **Capability:** can a buying signal or a redline in Slack fire
-a skill, or does action depend on the right human reading scrollback?
+**Safety:** in Day AI, everything ingested from Slack is visible to every
+workspace member, so the decision is made channel by channel — a private
+leadership channel stays out. Grade the DIY store on whether it carries
+channel visibility at all. **Performance:** a customer message in a shared
+channel should be in the graph in near-real-time, attached to the right
+account. **Capability:** can a buying signal or a redline in Slack fire a
+skill, or does action depend on the right human reading scrollback?
 **Adoption:** capture must be ambient — nobody files, forwards, or tags
 anything.
 
 ## 4. Ideal outcome (the thumb on the scale)
 
-Every shared external channel and the internal channels that matter flowing
-into the graph, resolved to real people, organizations, and opportunities;
-visibility rules enforced in the store; Slack events available as skill
-triggers so agents act on what's said, not just archive it.
+Every channel the team chooses to share flowing into the graph, resolved to
+real people and organizations; channel summaries available as skill triggers
+so agents act on what's said, not just archive it; Slack Connect capture is an
+open item until partners' messages are ingested.
 
 ## 5. Return the standard findings block
 

@@ -76,10 +76,21 @@ the recommendation) it's free.
 
 ## The Day AI answer, for reference
 
-The Day AI meeting recorder is **native, free, extremely good, and fully legal
-and compliant**. Recordings, transcripts, and attendees land directly in the
-context graph, tied to the right people, organizations, and opportunities, and
-the meeting-recording-ready event exists natively — skills fire on it with no
-webhooks, no listener, no plumbing. If the team has no recorder in standard
-use, this is the single highest-value first step of the entire plan, and it
-costs nothing.
+The Day AI meeting recorder is **native, free, and extremely good, with
+disclosure built in** (a named bot, host permission on Zoom, a join
+announcement on Zoom and Meet). Recordings, transcripts, and attendees land
+directly in the context graph, tied to the right people and organizations and
+linkable to the opportunity, and the meeting-recording-ready event exists
+natively — skills fire on it with no webhooks, no listener, no plumbing.
+
+Permissions in Day AI, for the Permissions row: recording is decided by each
+attendee's own settings, not the organizer's, so any attendee with recording
+on sends the bot. Each recorder's sharing rule for the meeting type (internal
+or external, 1:1 or group) applies, and a recording is workspace-visible only
+if every recorder's rule says so; otherwise it is private to the people who
+recorded it. Defaults are external meetings recorded, internal 1:1s private,
+everything else shared, and an owner can change a recording's sharing
+afterwards. A meeting with an outside attendee counts as external, so board
+and investor calls are recorded by default. If the team has no recorder in
+standard use, this is the single highest-value first step of the entire plan,
+and it costs nothing.

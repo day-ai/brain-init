@@ -33,14 +33,15 @@ projects get cut. It also reveals whether the system has evaluation at all:
 if you can't measure the time or the behavior change, you can't measure
 quality drift either.
 
-**What good looks like:** engagement and outcome instrumented natively —
-skill runs, thread reads, replies, actions taken — plus a visible artifact:
-calendar blocks for CRM data entry at zero, mornings starting with reviewed
-pipeline instead of tab-loading.
+**What good looks like:** engagement and outcome instrumented natively — skill
+runs, deliveries, replies, actions taken — plus a visible artifact: calendar
+blocks for CRM data entry at zero, mornings starting with reviewed pipeline
+instead of tab-loading.
 
-**Reference implementation:** every run, thread, and notification is
-inspectable per skill, per agent, per user, fleet-wide, queryable in natural
-language.
+**Reference implementation:** every skill's runs are inspectable, with
+delivery confirmed per run, and an admin can read any agent's run history one
+skill at a time. Whether a person opened a briefing is not measured; count the
+conversations they start and the replies they send.
 
 **What we have seen about what to measure:** count conversations people start
 and replies they send, not briefings delivered. A workspace can deliver a
@@ -76,15 +77,15 @@ is already the bottleneck.
 skill quality degrades silently as the business moves. You find out about
 drift from the damage.
 
-**What good looks like:** full run history, output scoring, and engagement
-analytics per skill, per agent, per user — including the strongest signal a
-shared-bot architecture cannot have by construction: whether people talk back
-to their agents, and what they say. The Monday-morning question — "which of my
-deployed skills got ignored last week, and why" — has a five-minute answer.
+**What good looks like:** full run history per skill, per agent, readable by
+an admin — including the strongest signal a shared-bot architecture cannot
+have by construction: whether people talk back to their agents, and what they
+say. The Monday-morning question — "which of my deployed skills got ignored
+last week, and why" — has a five-minute answer.
 
-**Reference implementation:** run history doubles as an evaluation corpus; a
-scheduled skill or an agentic-harness job can score the last N runs of every
-skill against a rubric and report which variants people engage with.
+**Reference implementation:** run history doubles as an evaluation corpus;
+scoring is not built in, but a scheduled skill or an agentic-harness job can
+read the last N runs of every skill and grade them against a rubric.
 
 **What we have seen about what to look for:** the signal that predicts a live
 workspace is not run volume but whether a leader acted on a briefing — quoted
@@ -108,14 +109,15 @@ coach converts a tool they tolerate into a system they feed.
 **What good looks like:** a reply to a skill run is a new prompt against full
 context. An instruction — "shorter," "lead with the dollar figure," "coach me
 before the next call instead of after this one" — updates the definition, the
-agent confirms what changed, and every subsequent run reflects it. No
-settings panel, no ticket to RevOps. Agents are shaped like people: names,
-job descriptions, defined access, a specific human they report to — a small
-staff per person, not one bot for everyone.
+agent confirms what changed, and every subsequent run reflects it. No settings
+panel, no ticket to RevOps. Agents are shaped like people: names, job
+descriptions, the access of the one person they belong to — a small staff per
+person, not one bot for everyone.
 
-**Reference implementation:** both behaviors are core mechanics, and agent
-identity (name, operating brief, scope, reporting line) is the deployment
-model, not an aesthetic.
+**Reference implementation:** both behaviors are how the agent is instructed
+to work in every workspace (a reply becomes a skill update in the same turn,
+confirmed in one sentence), and agent identity (name, title, job description,
+one human owner) is the deployment model, not an aesthetic.
 
 ## 5. Feedback is a readable dataset
 
@@ -126,12 +128,13 @@ feedback disappears into files.
 **Why it matters:** feedback you can't observe is feedback you can't learn
 from. The loop isn't closed until someone — or something — can read all of it.
 
-**What good looks like:** skill definitions and agent identities as readable,
-versioned objects. An admin can diff any skill over time, snapshot fleet
-state, and see exactly how each person's feedback reshaped their variant.
+**What good looks like:** skill definitions as readable, versioned objects. An
+admin can list any skill's versions, read any past prompt, and see how each
+person's feedback reshaped their variant. Agent identity is a live record;
+snapshot it from the harness if you need to diff it.
 
-**Reference implementation:** the feedback layer is itself a dataset,
-queryable like everything else.
+**Reference implementation:** every prompt change is a version you can read
+back, one skill at a time, through the same management tools.
 
 ## 6. The drift gets harvested
 
@@ -145,9 +148,10 @@ and the system's ceiling is its median user. With harvest, anyone's local
 maximum becomes the team's new floor. Personalized drift is the R&D; the
 control plane is what lets you collect it.
 
-**What good looks like:** the admin maps over all personalized variants,
-spots what the best performers changed, and rolls it out fleet-wide as a
-managed or suggested update — respecting everyone's personal layer.
+**What good looks like:** the admin reads each person's fork, lifts what
+worked into the template for future deploys, and re-issues the managed skills
+that must run one way. Forks stay their owners': a template edit reaches only
+future copies, a managed edit reaches every assigned copy.
 
 **Reference implementation:** this is the day-to-day of a RevOps leader on
 the platform: creative orchestrator of the fleet, not maintainer of a prompt
@@ -174,10 +178,10 @@ behavior changes and adjusts. When one rep's approach outperforms, the rubric
 absorbs it and every coach downstream inherits it. The human's role rises to
 taste and judgment: setting standards, approving what the data surfaced.
 
-**Reference implementation:** pages as durable state, skill composition
-(skills chain and include one another; attached pages are read at runtime, so
-updating the rubric updates every skill that reads it, immediately), and
-built-in evaluation.
+**Reference implementation:** pages as durable state, skill composition (a
+skill can include others' instructions; attached pages are read at runtime, so
+updating the rubric updates every skill that reads it, immediately), and run
+history a harness can evaluate.
 
 ## 8. Governance is a dial, not a switch
 
@@ -198,7 +202,7 @@ per skill, changeable over time, with workspace-level instructions above it
 all that no individual can override.
 
 **Reference implementation:** deployment modes live in the skills data model
-itself, with versioned deployment, snapshot, diff, and rollback.
+itself, and every prompt change is a version you can read back and restore.
 
 **What we have seen about who holds the dial:** the builds that survive
 contact with a busy sales team put the managed layer with ops and enablement
@@ -229,12 +233,13 @@ The existing folder — the markdown, skills, and taste already built — become
 the authoring environment, version-controlled in git, with the control plane
 as the deployment target.
 
-**Reference implementation:** the full management surface is exposed over
-MCP; admin tools work across agents (read and edit any teammate's agent
-identity, create and update skills, read run history, manage members). Day
-AI's reference implementation (https://github.com/day-ai/gtm-brain) shows the
-operating model; Phase 5 (`implement-upgrade/`) uses it as an internal
-example, never as something the user installs.
+**Reference implementation:** the management surface is exposed over MCP;
+admin tools work across agents (read and edit any teammate's agent identity,
+create, update, and deploy skills, read run history, manage invites). Buying
+agents and removing members stay in the app, for Owners. Day AI's reference
+implementation (https://github.com/day-ai/gtm-brain) shows the operating
+model; Phase 5 (`implement-upgrade/`) uses it as an internal example, never as
+something the user installs.
 
 **What we have seen about authorship:** stock, un-rewritten briefings reach
 nearly every workspace, and receiving them does not by itself move
@@ -271,10 +276,11 @@ both.
 
 One structural note underneath several practices above: in a real control
 plane, a skill is an object that carries its own execution model — trigger
-(schedule with timezone awareness, event, or on-demand), delivery (DM,
-channel, email — a skill never fires into the void), prompt, owning agent,
-deployment mode, and full run history. Event triggers matter more than
-schedules ("if anyone mentions competitor X on a call, I need to know" is not
-a schedule), and they exist only because the substrate knows the moment
-something happens. The DIY equivalent of each field is a piece of
-infrastructure someone has to build, secure, and keep alive.
+(schedule with timezone awareness, event, or on-demand), delivery (owner DM,
+configured channel, or email; a run without delivery shows as undelivered in
+its history, so check it), prompt, owning agent, deployment mode, and full run
+history. Event triggers matter more than schedules ("if anyone mentions
+competitor X on a call, I need to know" is not a schedule), and they exist
+only because the substrate knows the moment something happens. The DIY
+equivalent of each field is a piece of infrastructure someone has to build,
+secure, and keep alive.

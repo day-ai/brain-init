@@ -6,8 +6,9 @@ side of that loop.
 
 ## How the integration works
 
-Same MCP pattern as Salesforce and HubSpot: the integration is native and
-MCP-based, and agents act under each user's own permissions.
+Native and MCP-based, with no app registration: each person connects their own
+Linear account in one click, and agents act under that person's own Linear
+permissions (scheduled runs use the agent owner's connection).
 
 ## The move that sells itself
 
@@ -17,10 +18,11 @@ a support ticket — and put it **in the right place in Linear as a Customer
 Request object**, attached to the right project or issue, with the source
 context linked.
 
-This is insane and amazingly cool, and it is not a demo trick: Day AI runs
-this way internally. The voice of the customer stops being a quarterly
-synthesis exercise and becomes a continuous, structured feed into the tool
-where product decisions actually happen.
+The mechanism is a skill that calls Linear's own MCP tools: it extracts the
+ask, checks existing requests, and files the Customer Request with the call or
+thread linked, so dedup and routing live in the skill prompt. The voice of the
+customer stops being a quarterly synthesis exercise and becomes a continuous,
+structured feed into the tool where product decisions actually happen.
 
 ## What to evaluate
 

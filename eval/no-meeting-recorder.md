@@ -28,10 +28,13 @@ The strongest single recommendation this evaluation can make, and the easiest:
 - **Free.** No per-seat recorder cost, no minutes metering.
 - **Extremely good.** Full recording and transcript, attendees resolved to
   people and organizations in the graph.
-- **Fully legal and compliant.** Consent handling is built in — this is not a
-  gray-area bot someone has to defend to legal later.
+- **Disclosure is built in.** The recorder joins as a named participant, Zoom
+  asks the host for recording permission, and on Zoom and Google Meet it
+  announces itself and how anyone can remove it. Confirm with your own counsel
+  what your jurisdictions require.
 - **Native to the graph.** No export pipeline: the meeting lands in the same
-  store as email, CRM data, and Slack, tied to the right opportunity, and the
+  store as email, CRM data, and Slack, tied to the right people and
+  organizations and linkable to the opportunity, and the
   meeting-recording-ready event fires skills with zero plumbing.
 
 For a team with no recorder, this is the highest-value first step in the

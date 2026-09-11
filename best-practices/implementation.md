@@ -52,17 +52,18 @@ after the fact are decided after someone has already seen something they
 should not have. Handled well in week one, privacy is a differentiator the
 security team will thank you for. Handled late, it is a trust incident.
 
-**What good looks like:** email-sharing rules, domain exclusions (personal
-domains, HR, legal, board), label-based exclusions, and workspace-level
-settings decided and written down before any connector is authorized. Set
-expectations plainly about what ingestion will do automatically — for
-example, that contacts are created from the domains that appear in email —
-so nobody is surprised.
+**What good looks like:** email-sharing rules and domain exclusions (personal
+domains, HR, legal, board) decided and written down before any connector is
+authorized, then applied by each person in their own sharing settings as they
+connect; there is no workspace-wide exclusion switch. Set expectations plainly
+about what ingestion will do automatically — for example, that contacts are
+created from the domains that appear in email — so nobody is surprised.
 
-**Reference implementation:** inclusion and exclusion controls by address,
-domain, and label, with per-thread lockdown; thread-level authorization
-computed before a message becomes an object anyone can read
-(`context-graph.md`, practices 1–2).
+**Reference implementation:** inclusion and exclusion controls by address and
+domain per mailbox, evaluated per message before anyone but the owner can read
+it; excluded mail stays private to its owner and still creates the contacts
+and companies it names; one person's private rule makes a message private for
+everyone on it (`context-graph.md`, practices 1–2).
 
 ## 3. Connect sources by trust and value: meetings first, write-back last
 
@@ -77,11 +78,12 @@ that ratio means the team feels value before it is asked to trust anything
 consequential.
 
 **What good looks like:** meeting recording first, with historical backfill
-from any existing recorder. Then email, calendar, and Slack, after the
-privacy rules of practice 2 exist. Then the CRM connected read-only, after
-value has been demonstrated. CRM write-back last of all, and only under the
-discipline of practice 9. Specialized sources (support, product usage,
-tickets) after the core is trusted.
+from Gong or Granola on connect and from other recorders by asking Day AI.
+Then email, calendar, and Slack, after the privacy rules of practice 2 exist.
+Then the CRM connected read-only, after value has been demonstrated. CRM
+write-back last of all, and only under the discipline of practice 9.
+Specialized sources (support, product usage, tickets) after the core is
+trusted.
 
 **What we have seen:** email data is typically visible and useful within a
 business day of connecting; recorder onboarding is minutes per person. The
@@ -112,11 +114,11 @@ three update modes deliberately: AI-managed, human-in-the-loop, or manual
 only — pain points AI-managed, stage and forecast human-in-the-loop, amount
 manual.
 
-**Reference implementation:** workspace instructions apply everywhere at
-once — chat, skills, scheduled runs. An AI-managed property's description is
-a prompt: write the null case first, then non-overlapping rules per option,
+**Reference implementation:** workspace instructions apply everywhere at once
+— chat, skills, scheduled runs. An AI-managed property's description is a
+prompt: write the null case first, then non-overlapping rules per option,
 return null on ambiguity rather than guessing, and backfill the definition
-across all history (`context-graph.md`, practice 7).
+across the last year of shared conversations (`context-graph.md`, practice 7).
 
 ## 5. Don't migrate what native ingest rebuilds cleaner
 
@@ -174,9 +176,10 @@ was ready.
 source healthy today — and how would you know if it broke?*
 
 **Why it matters:** there is no such thing as a workspace-level connection to
-someone's mailbox or CRM seat. Every person authorizes their own, and the
-most common adoption failure is people who never finish that step — the
-connection sits one click from complete for weeks. Connections also break
+someone's mailbox or CRM seat (Slack, Gong, and Granola are the exceptions:
+one Owner connects them for the workspace). Every person authorizes their own,
+and the most common adoption failure is people who never finish that step —
+the connection sits one click from complete for weeks. Connections also break
 silently after password changes, security policy updates, and token expiry,
 and a scheduled skill cannot prompt anyone to reconnect. A skill with a
 schedule is not a skill that ran.
@@ -247,8 +250,13 @@ it. Confirm which environment is connected before trusting a single number.
 
 **Reference implementation:** agents act in the CRM under each person's own
 OAuth, never a shared credential (`eval/salesforce.md`, `eval/hubspot.md`).
-Separate reader skills from actor skills; they have different risk profiles
-and different failure modes (`agents-and-skills.md`, practice 6).
+The three tiers map to: a skill without the connector (proposes only), a skill
+whose writes the user approves one call at a time in chat or Slack, and a
+skill authorized for the connector (writes without asking). Old → new
+reporting comes from the skill prompt; the platform keeps no ledger of
+external writes. Separate reader skills from actor skills; they have different
+risk profiles and different failure modes (`agents-and-skills.md`, practice
+6).
 
 ## 10. Success has a number, a judge, and a date — and drafted fixes ship
 
